@@ -1,0 +1,21 @@
+public class PirateArt { 
+	public static void main(String[] args) { 
+	
+	String pirateArt =  
+	"_______\n" + 
+      "	/       \\ \n"  + 
+     " /_________\\ \n" + 
+"	|       |   \n" +  
+     "  | O   O | \n"   + 
+       "|   >   |\n" + 
+       "|\\___/ |\n" + 
+       "|_      | \n" +  
+      "	|_)-c 	| \n" + 
+       "|       |\n" + 
+      " /       \\n" +  
+      "/         \ \n" + 
+     "/_____|_____\ \n"; 
+
+System.out.println(pirateArt);
+}
+}
