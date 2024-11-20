@@ -5,33 +5,22 @@ public class Parse{
 	private String[] comand = new String[ 5 ];
 	String output = "";
 	
-	private Player player = new Player();
 	
-	private RoomStore[][][] store = new RoomStore[ 1 ][ 3 ][ 3 ];//change
-	String[] roomO1 = {"cant","cant","cant",null,null,"cant"};
-	String[] roomO2 = {"cant","cant","cant",null,"cant",null};
-	String[] roomO3 = {"cant","cant","cant",null,"cant","cant"};
-	String[] roomO4 = {"cant","cant",null,null,"cant","cant"};
-	String[] roomO5 = {"cant","cant",null,null,null,"cant"};
-	String[] roomO6 = {"cant","cant",null,null,"cant",null};
-	String[] roomO7 = {"cant","cant",null,"cant",null,"cant"};
-	String[] roomO8 = {"cant","cant",null,"cant","cant",null};
-	String[] roomO9 = {"cant","cant",null,"cant","cant","cant"};
+	private game g = new game();
+	private int[] S = g.start();
+	private Player player = new Player( S );
+	private RoomStore[][][] store = null;
+	private Items itemOutput = null;
 
-	private Room room = new Room ("room 1\nYou can go south or east", null,null, roomO1);
+	private Room room = new Room();
 	
 	public Parse() {//change
-		store[0][0][0] = new RoomStore("room 1\nYou can go south or east", null, null, roomO1 );
-		store[0][0][1] = new RoomStore("room 2\nYou can go south or west", null, null, roomO2 );
-		store[0][0][2] = new RoomStore("room 3\nYou can go south", new String[] { "sword" }, null, roomO3 );
-		store[0][1][0] = new RoomStore("room 4\nYou can go south or north", null, null, roomO4 );
-		store[0][1][1] = new RoomStore("room 5\nYou can go north, south or east", null, null, roomO5 );
-		store[0][1][2] = new RoomStore("room 6\nYou can go south or north", null, null, roomO6 );
-		store[0][2][0] = new RoomStore("room 7\nYou can go north or east", null, null, roomO7 );
-		store[0][2][1] = new RoomStore("room 8\nYou can go north or west", null, null, roomO8 );
-		store[0][2][2] = new RoomStore("room 9\nYou can go north", null, null, roomO9 );
 		
-		
+		store = g.getGame();
+		room.upDataD( store[ S[ 0 ] ][ S[ 1 ] ][ S[ 2 ] ].discripshonOut() );
+		room.upDataI( store[ S[ 0 ] ][ S[ 1 ] ][ S[ 2 ] ].itemsOut() );
+		room.upDataM( store[ S[ 0 ] ][ S[ 1 ] ][ S[ 2 ] ].monstersOut() );
+		room.upDataOut( store[ S[ 0 ] ][ S[ 1 ] ][ S[ 2 ] ].outOut() );
 	}
 
 	public void send( String input ){
@@ -50,23 +39,27 @@ public class Parse{
 		}
 		error = true;
 		switch ( comand[ 0 ] ) {
-			case  "get": 
+			case  "get": //test
 				if ( count != 2 ) break;
-				if ( player.full() ) output = "inventory full";
-				else output = room.get( comand[ 1 ] );
-				if ( output.equals( comand[ 1 ] ) ) {
-					player.get( comand[ 1 ] );
-					output += " Taken";
+				if ( player.full() ) output = "inventory full";//fix
+				else itemOutput = room.get( comand[ 1 ] );
+				if ( itemOutput != null && 
+					itemOutput.returnName().equalsIgnoreCase( comand[ 1 ] ) ) {
+						
+					player.get( itemOutput );
+					output = itemOutput.returnName() + " Taken";
 				}
+				else output = ( "No " + comand[ 1 ] + " found" );
 				error = false; break;
 				
-			case  "drop": 
+			case  "drop": //test
 				if ( count != 2 ) break;
-				output = player.drop( comand[ 1 ] );
-				if ( !output.equals( "not in inventory:(" ) ) {
-					room.add( output );
-					output = output + " Droped";
+				itemOutput = player.drop( comand[ 1 ] );
+				if ( itemOutput != null ) {
+					room.add( itemOutput );
+					output = itemOutput.returnName() + " Droped";
 				}
+				else output = "Not in inventory:(";
 				error = false; break;
 				
 			case  "go": 
@@ -92,7 +85,7 @@ public class Parse{
 			case  "restore": 
 				error = true; break;
 			case  "quit": //finish
-				output = "quit";
+				output = "quiting";
 				error = false; break;
 			default:
 			

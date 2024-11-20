@@ -7,7 +7,7 @@ public class run{
 		Scanner in = new Scanner( System.in );
 		p.send( "look" );
 		System.out.println( p.receive() + "\n" );
-		while (!p.receive().equals("quit")){
+		while (!p.receive().equals("quiting")){
 			
 			p.send( in.nextLine() );
 			System.out.println();

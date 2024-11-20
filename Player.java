@@ -1,47 +1,38 @@
 
+import java.util.ArrayList;
 
 public class Player{
 	
-	private String[] inventory = new String[ 6 ]; //change to what you want the max to be
-	private int count = 0;// change to 0 later
+	private ArrayList<Items> items = new ArrayList<Items>();
 	private int[] posishon = { 0, 0, 0 };
 	private int[] posishonOld = { 0, 0, 0 };
 	private int health = 2; // change lader
+	private int weight = 0;
+	private int max = 6; //change
 	
-	public Player(){
-		//inventory[0]="aa";
-		//inventory[1]="bb";
-		//inventory[2]="cc";
-		//inventory[3]="dd";
-		//inventory[4]="ee";
-		//inventory[5]="ff";
+	public Player( int[] start ){
+		posishon = start;
+		
 	}
 	
-	public String drop( String in ) {
-		String out = null;
-		in = in.trim();
-		for ( int i = 0; i < inventory.length; i++ ) {
-			if ( inventory[ i ] != null && inventory[ i ].equals( in ) ) {
-				count--;
-				out = inventory[ i ];
-				for (int j = i; j < inventory.length - 1; j++ ) {
-					inventory[ j ] = inventory[ j + 1 ];
-				}
-				inventory[ inventory.length - 1 ] = null;
-				break;
+	public Items drop( String in ) {//test
+		Items out = null;
+		for ( int i = 0; i < items.size(); i++ ) {
+			if ( items.get( i ).returnName().equalsIgnoreCase( in ) ) {
+				out = items.get( i );
+				items.remove( i );
 			}
 		}
-		if ( out != null ) return out;
-		else return "not in inventory:(";
+		if (true) return out;
+		else return null;
 	}
 	
-	public void get( String in ) {
-		count++;
-		inventory[ count ] = in;
+	public void get( Items in ) {//test
+		items.add( in );
 	}
 	
-	public boolean full(){
-		return count == inventory.length - 1;
+	public boolean full(){//fix
+		return false;
 	}
 	
 	public void up() { old(); posishon[ 0 ] += 1; }
@@ -55,14 +46,12 @@ public class Player{
 	
 	public int[] OL() { return posishonOld; }
 	
-	public String myStuff() {
+	public String myStuff() {//test
 		String out = "You have:";
 		boolean anything = false;
-		for ( String i : inventory ) {
-			if ( i != null ) {
-				out += "\nA " + i;
+		for ( int i = 0; i < items.size(); i++ ) {
+				out += "\nA " + items.get( i ).returnName();
 				anything = true;
-			}
 		}
 		if ( !anything ) out += "\nNothing:(";
 		return out;
