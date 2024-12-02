@@ -39,6 +39,7 @@ public Items (String name, String special) {
 
 	this.name = name;
 	this.special = special;
+	this.weight = 0;
 
 }
 
