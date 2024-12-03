@@ -67,7 +67,7 @@ public class Player{
 			count += items.get( i ).returnWeight();
 		String out = "Curent health: " + health;
 		out += "\nCurent weight: " + count + " out of " + max;
-		out += "\n\nYou have:";
+		out += "\nYou have:";
 		boolean anything = false;
 		for ( int i = 0; i < items.size(); i++ ) {
 				out += "\nA " + items.get( i ).returnName() + "  Wg:" +
