@@ -41,6 +41,7 @@ public class Parse{
 			count++;
 		}
 		error = true;
+		if ( comand[ 0 ] == null ) comand[ 0 ] = "";
 		switch ( comand[ 0 ] ) {
 			case  "get": 
 				if ( count != 2 ) break;
@@ -181,10 +182,6 @@ public class Parse{
 				if ( count != 1 ) break;
 				output = player.myStuff();
 				error = false; break;
-			case  "save": 
-				error = true; break;
-			case  "restore": 
-				error = true; break;
 			case  "quit": //finish
 				output = "quiting";
 				error = false; break;
@@ -194,16 +191,16 @@ public class Parse{
 		if ( error ) output = "I dont understand";//fix ladrer
 		damage = room.damage();
 		if ( !comand[ 0 ].equalsIgnoreCase( "kill" ) ) damage = damage * 2;
-		if ( damage != 0 && ( comand[ 0 ].equalsIgnoreCase( "get" ) || 
-			comand[ 0 ].equalsIgnoreCase( "drop" ) || 
+		if ( !error && damage != 0 && ( comand[ 0 ].equalsIgnoreCase( "get" )
+			|| comand[ 0 ].equalsIgnoreCase( "drop" ) || 
 			comand[ 0 ].equalsIgnoreCase( "smash" ) || 
 			comand[ 0 ].equalsIgnoreCase( "open" ) || 
 			comand[ 0 ].equalsIgnoreCase( "kill" ) ) ) {
 			damage = player.damage( damage );
 			if ( damage > 0 )
 				output += "\nYou take damage. You have " + damage + 
-				"health left";
-			else output = "\nYou take damage and have died\nquiting";
+				" health left";
+			else output = "You take damage and have died\nquiting";
 		}
 		
 		
