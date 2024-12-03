@@ -8,7 +8,7 @@ public class Parse{
 	
 	private game g = new game();
 	private int[] S = g.start();
-	private Player player = new Player( S, g.maxWeight() );
+	private Player player = new Player( S, g.maxWeight(), g.startHealth() );
 	private RoomStore[][][] store = null;
 	private Items itemOutput = null;
 

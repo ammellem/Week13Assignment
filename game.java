@@ -1,6 +1,7 @@
 
 public class game{
 	private int playerMaxWeight = 7;
+	private int health = 2;
 	private RoomStore[][][] store = new RoomStore[ 1 ][ 3 ][ 3 ];//change
 	private int[] gameStart = { 0, 0, 2 }; //starting locashon
 	//define one for each room. null you can go in that dorecshon. 
@@ -41,4 +42,6 @@ public class game{
 	public int[] start() { return gameStart; }
 
 	public int maxWeight() { return playerMaxWeight; }
+	
+	public int startHealth() { return health; }
 }
