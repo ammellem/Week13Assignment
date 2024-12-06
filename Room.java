@@ -50,7 +50,7 @@ public class Room{
 		else return null;
 	}
 
-	public void add( Items in ) {//test
+	public void add( Items in ) {
 		items.add( in );
 	}
 		
@@ -91,7 +91,16 @@ public class Room{
 		}
 		if ( back2 != null ) {
 			health = back2.hit( dam );
-			if ( health <= 0 ) back = back2.Name() + " killed";
+			if ( health <= 0 ) {
+				back = back2.Name() + " killed ";
+				if ( back2.Stuff() != null ) {
+					back +=  "and droped a:";
+					for ( int i = 0; i < back2.Stuff().length; i++ ) {
+						items.add( back2.Stuff()[ i ] );
+						back += ( "\n" + back2.Stuff()[ i ].returnName() );
+					}
+				}
+			}
 			else { 
 				back = back2.Name() + " takes damage"; 
 				monsters.add( back2 );

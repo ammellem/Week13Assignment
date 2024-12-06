@@ -35,11 +35,11 @@ public Items(String name, int dmg, int durr, int weight) {
 
 }
 
-public Items (String name, String special) {
+public Items (String name, int weight, String special) {
 
 	this.name = name;
 	this.special = special;
-	this.weight = 0;
+	this.weight = weight;
 
 }
 

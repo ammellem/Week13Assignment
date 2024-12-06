@@ -30,7 +30,7 @@ public class run{
 					PrintWriter writer = new PrintWriter( name );
 					writer.println( save );
 					writer.close();
-					System.out.println( "game saved" );
+					System.out.println( "game saved\n" );
 				}
 				catch(  FileNotFoundException e ){
 					System.out.println( "Error: File Not Found" );
@@ -43,8 +43,10 @@ public class run{
 					if ( !name.endsWith( ".txt" ) ) name += ".txt";
 					BufferedReader buff = new BufferedReader( new FileReader( name ) );
 					p = new Parse();
+					save = "";
 					while ( ( text = buff.readLine() ) != null ) {
 						p.send( text );
+						save += ( text + "\n" );
 					}
 					System.out.println( name + " loaded successfully\n" );
 					p.send( "look" );

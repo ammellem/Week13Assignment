@@ -6,12 +6,13 @@ public class Player{
 	private ArrayList<Items> items = new ArrayList<Items>();
 	private int[] posishon = { 0, 0, 0 };
 	private int[] posishonOld = { 0, 0, 0 };
-	private int health = 2; // change lader
+	private int health;
 	private int max;
 	
-	public Player( int[] start, int weight ){
+	public Player( int[] start, int weight, int h ){
 		posishon = start;
 		max = weight;
+		health = h;
 	}
 	
 	public Items drop( String in ) {

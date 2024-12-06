@@ -40,7 +40,7 @@ public class run2{
 				PrintWriter writer = new PrintWriter( name );
 				writer.println( save );
 				writer.close();
-				System.out.println( "game saved" );
+				out =  "game saved\n";
 			}
 			catch(  FileNotFoundException e ){
 				System.out.println( "Error: File Not Found" );
@@ -55,12 +55,14 @@ public class run2{
 				BufferedReader buff = 
 					new BufferedReader( new FileReader( name ) );
 				p = new Parse();
+				save = "";
 				while ( ( text = buff.readLine() ) != null ) {
 					p.send( text );
+					save += ( text + "\n" );
 				}
 				out = name + " loaded successfully\n";
 				p.send( "look" );
-				out += ( p.receive() );
+				out += ( p.receive() + "\n" );
 				
 			}
 			catch(  FileNotFoundException e ){
