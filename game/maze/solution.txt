@@ -1,0 +1,19 @@
+go north
+go west
+go north
+go west
+go north
+go north
+get key
+go south
+go south
+go east
+go east
+go east
+go east
+go north
+go north
+go west
+go south
+go west
+open door with key
