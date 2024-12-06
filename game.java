@@ -1,7 +1,7 @@
 
 public class game{
 	private int playerMaxWeight = 125;//small 10 medeom 25 hevy 50
-	private int health = 20;
+	private int health = 16;
 	private RoomStore[][][] store = new RoomStore[ 4 ][ 3 ][ 7 ];//change
 	private int[] gameStart = { 0, 1, 3 }; //starting locashon
 	//define one for each room. null There is a path in that dorecshon. 
@@ -40,7 +40,7 @@ public class game{
 	//item: name , damage, smash, wg, speshal
 	private Items knife = new Items( "KNIFE", 2, 0, 5 );
 	private Items key = new Items( "KEY", 5, "Celldoor" );
-	private Items ball = new Items( "CANNON_BALL", 100, 5, 120 );
+	private Items ball = new Items( "CANNONBALL", 100, 5, 120 );
 	private Items coins = new Items( "COIN", 0, 0, 40, 
 		"Parrot blocking the stairs looking for gold" );
 	private Items rope = new Items( "ROPE", 0, 0, 30, 
@@ -60,7 +60,7 @@ public class game{
 		new Items[]{ key2 } );
 	private Monster pirate = new Monster( "PIRATE", 15, 5,
 		new Items[]{ sword } );
-	private Monster captan = new Monster( "CAPTAN", 100, 10,
+	private Monster captan = new Monster( "CAPTAiN", 100, 10,
 		new Items[]{ key4 } );
 	private Monster chest = new Monster( "CHEST", 2, 0, 
 		new Items[]{ dagger } );
@@ -69,7 +69,8 @@ public class game{
 		
 		//needs room discription and room dereconse from above
 		// discripshon, items, monsters, out, smash
-	    store[0][1][3] = new RoomStore( "You are startled awake with a" + 
+	   store[0][1][3] = new RoomStore( "Welcome to Escape The Black Revenant" +
+			"You are startled awake with a" + 
 			"violent crash as you're rolled into the moist wooden wall" +
 			" of your cell. You appear to be in a cell, but where you are" +
 			" is a mystery.\nYou notice the guard is asleep next to a room" +
