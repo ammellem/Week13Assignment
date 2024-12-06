@@ -1,5 +1,5 @@
 /*
-* controls the game with inputs from GameRunner
+* controls the game with inputs from techadvencherserver
 * Version 1.0 
 * @author Austin Deegan
 */
