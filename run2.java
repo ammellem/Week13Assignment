@@ -1,3 +1,9 @@
+/*
+* controls the game with inputs from GameRunner
+* Version 1.0 
+* @author Austin Deegan
+*/
+
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;

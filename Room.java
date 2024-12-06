@@ -1,3 +1,9 @@
+/*
+* room class
+* Version 1.0 
+* @author Austin Deegan
+*/
+
 import java.util.Arrays;
 import java.util.ArrayList;
 

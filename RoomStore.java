@@ -1,3 +1,9 @@
+/*
+* room storage class
+* Version 1.0 
+* @author Austin Deegan
+*/
+
 import java.util.ArrayList;
 
 public class RoomStore{

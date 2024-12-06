@@ -1,3 +1,8 @@
+/*
+* runs the game in the terminal
+* Version 1.0 
+* @author Austin Deegan
+*/
 import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,7 +24,7 @@ public class run{
 		String name;
 		System.out.println( p.receive() + "\n" );
 		while ( !p.receive().endsWith( "quiting" ) ){
-			
+			System.out.print( "> " );
 			text = in.nextLine();
 			
 			if ( text.length() > 4 && text.substring( 0, 4 ).equalsIgnoreCase( "save" ) ) {

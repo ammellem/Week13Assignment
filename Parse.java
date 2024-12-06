@@ -1,3 +1,9 @@
+/*
+* the parsing engine
+* Version 1.0 
+* @author Austin Deegan
+*/
+
 import java.util.Arrays;
 
 public class Parse{
@@ -6,7 +12,9 @@ public class Parse{
 	String output = "";
 	private int damage = 0;
 	
+	private String[] drection = { "up", "down", "north", "south", "east", "west" };
 	private game g = new game();
+	private Read read = new Read();
 	private int[] S = g.start();
 	private Player player = new Player( S, g.maxWeight(), g.startHealth() );
 	private RoomStore[][][] store = null;
@@ -34,14 +42,15 @@ public class Parse{
 		while ( i < in.length() - 1 && count < 5 ) {
 			while ( in.charAt( i ) != ' ' && i < in.length() - 1 ) i++;
 			if ( i != ( in.length() - 1 ) ) 
-				comand[ count ] = in.substring( old, i );
-			else comand[ count ] = in.substring( old, i + 1 );
+				comand[ count ] = in.substring( old, i ).trim();
+			else comand[ count ] = in.substring( old, i + 1 ).trim();
 			old = i + 1;
 			i++;
 			count++;
 		}
 		error = true;
 		if ( comand[ 0 ] == null ) comand[ 0 ] = "";
+		damage = room.damage();
 		switch ( comand[ 0 ] ) {
 			case  "get": 
 				if ( count != 2 ) break;
@@ -69,7 +78,10 @@ public class Parse{
 				}
 				else output = ( comand[ 1 ] + " not in inventory:(" );
 				error = false; break;
+			case  "lower":
+			case  "give":
 			case  "open":
+			case  "unlock":
 				if ( count == 2 ) {
 					output = "Can not be done";
 					error = false;
@@ -90,10 +102,10 @@ public class Parse{
 							store[ L[ 0 ] - 1 ][ L[ 1 ] ][ L[ 2 ] ]
 							.open( second );
 						if ( second == 2 ) 
-							store[ L[ 0 ] ][ L[ 1 ] + 1 ][ L[ 2 ] ]
+							store[ L[ 0 ] ][ L[ 1 ] - 1 ][ L[ 2 ] ]
 							.open( second );
 						if ( second == 3 ) 
-							store[ L[ 0 ] ][ L[ 1 ] - 1 ][ L[ 2 ] ]
+							store[ L[ 0 ] ][ L[ 1 ] + 1 ][ L[ 2 ] ]
 							.open( second );
 						if ( second == 4 ) 
 							store[ L[ 0 ] ][ L[ 1 ] ][ L[ 2 ] + 1 ]
@@ -101,16 +113,32 @@ public class Parse{
 						if ( second == 5 ) 
 							store[ L[ 0 ] ][ L[ 1 ] ][ L[ 2 ] - 1 ]
 							.open( second );
-						output = "your pathway is now clear";
+						output = "Success!\n";
+						move( drection[ second ] );
 					}
 					
 				}
 				else output = comand[ 3 ] + " not in inventory:(";
 				error = false; break;
+			
+			case  "read":
+				if ( count != 2 ) break;
+				itemOutput = player.search( comand[ 1 ] );
+				if ( itemOutput != null ) {
+					if ( itemOutput.returnSpecial()
+						.equalsIgnoreCase( "read" ) ) {
+						output = read.read( comand[ 1 ] );
+					}
+					else output = comand[ 1 ] + 
+						" is not a readable object";
+				
+				
+				}
+				error = false; break;
 				
 			case  "smash":
 				if ( count == 2 ) {
-					output = "No effect and your hand hurts";//fix spell
+					output = "No effect and your hand hurts";
 					error = false;
 					break;
 				}
@@ -129,10 +157,10 @@ public class Parse{
 							store[ L[ 0 ] - 1 ][ L[ 1 ] ][ L[ 2 ] ]
 							.open( second );
 						if ( second == 2 ) 
-							store[ L[ 0 ] ][ L[ 1 ] + 1 ][ L[ 2 ] ]
+							store[ L[ 0 ] ][ L[ 1 ] - 1 ][ L[ 2 ] ]
 							.open( second );
 						if ( second == 3 ) 
-							store[ L[ 0 ] ][ L[ 1 ] - 1 ][ L[ 2 ] ]
+							store[ L[ 0 ] ][ L[ 1 ] + 1 ][ L[ 2 ] ]
 							.open( second );
 						if ( second == 4 ) 
 							store[ L[ 0 ] ][ L[ 1 ] ][ L[ 2 ] + 1 ]
@@ -140,17 +168,19 @@ public class Parse{
 						if ( second == 5 ) 
 							store[ L[ 0 ] ][ L[ 1 ] ][ L[ 2 ] - 1 ]
 							.open( second );
-						output = "your pathway is now clear";
+						output = "Success!\n";
+						move( drection[ second ] );
 					}
 					
 				}
 				else output = comand[ 3 ] + " not in inventory:(";
 				error = false; break;
-				
+			case  "break":	
 			case  "kill": 
 				
 				if ( count == 2 ) { 
 					output = room.kill( comand[ 1 ], 1 );
+					damage = room.damage();
 					error = false;
 					break;
 				}
@@ -160,15 +190,14 @@ public class Parse{
 					output = room.kill( comand[ 1 ], itemOutput.returnDmg() );
 				}
 				else output = comand[ 3 ] + " not in inventory:(";
-				
-				
+				damage = room.damage();
 				error = false; break;
 			
 			case  "go": 
 				if ( count != 2 ) break;
+				output = null;
 				move( comand[ 1 ] );
 				error = false; break;
-				
 			case  "look": 
 				if ( count != 1 ) break;
 				output = room.look();
@@ -189,7 +218,7 @@ public class Parse{
 			
 		}
 		if ( error ) output = "I dont understand";//fix ladrer
-		damage = room.damage();
+		
 		if ( !comand[ 0 ].equalsIgnoreCase( "kill" ) ) damage = damage * 2;
 		if ( !error && damage != 0 && ( comand[ 0 ].equalsIgnoreCase( "get" )
 			|| comand[ 0 ].equalsIgnoreCase( "drop" ) || 
@@ -211,7 +240,6 @@ public class Parse{
 	}
 
 	private void move( String dorection ) {
-		output = null;
 		switch ( dorection.trim() ) {
 			case  "up": 
 				if ( room.go( 0 ) == null ) player.up();
@@ -249,9 +277,10 @@ public class Parse{
 					" health left\n";
 					changeRoom();
 				}
-				else output = "\nYou take damage and have died\nquiting";
+				else output = "You take damage and have died\nquiting";
 			} else changeRoom();
-		}
+		} else if ( output.equalsIgnoreCase( "Success!\n" ) )
+			changeRoom();
 	}
 
 	private void changeRoom() {

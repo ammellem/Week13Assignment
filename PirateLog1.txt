@@ -1,13 +1,7 @@
 **Captain's Log**
-
 **Day 210, Year of the Sea Serpent**
-
-We’ve set sail toward a wreckage that’s been on the horizon for the last two days—a derelict ship that appeared out of nowhere. No distress signals. No signs of battle. Just drifting in the open sea like some forgotten ghost. The crew is buzzing with anticipation, and rightly so. Word is that it’s not just any merchant vessel, but one tied to some high-ranking noble or military officer. The kind of target that promises not only riches but power, should we be fortunate enough to lay our hands on them.
-
-The *Black Revenant* cuts through the waves at full speed. The weather’s been calmer, which is a blessing. Fog rolls in thick around us, the sea like a sheet of glass, but there’s a tension in the air that even the most seasoned hands feel. We’re closing in on the wreckage now, and the silence of the ocean has only made the journey feel longer.
-
-I’ve ordered a thorough search. The wreck is strange, untouched in ways that don’t add up. The crew thinks it’s just another drifting hulk, left to rot by the sea, but something about this one calls to me. If the rumors are true, there’s a high-value target aboard—an officer, a noble, someone of import. The kind of person whose capture could change our fortunes for good.
-
-We’ll dock at first light and board. With any luck, there’ll be something left of the ship’s cargo, and perhaps even more—a prisoner. I’ve instructed the crew to remain sharp. If this wreck was abandoned by the crew, it’s either from fear or some darker force. We’ll find out soon enough.
-
-Tomorrow, we uncover its secrets.
+	We've set sail toward a wreckage that's been on the horizon for the last two days-a derelict ship that appeared out of nowhere. No distress signals. No signs of battle. Just drifting in the open sea like some forgotten ghost. The crew is buzzing with anticipation, and rightly so. Word is that it's not just any merchant vessel, but one tied to some high-ranking noble or military officer. The kind of target that promises not only riches but power, should we be fortunate enough to lay our hands on them.
+	The *Black Revenant* cuts through the waves at full speed. The weather's been calmer, which is a blessing. Fog rolls in thick around us, the sea like a sheet of glass, but there's a tension in the air that even the most seasoned hands feel. We're closing in on the wreckage now, and the silence of the ocean has only made the journey feel longer.
+	I've ordered a thorough search. The wreck is strange, untouched in ways that don't add up. The crew thinks it's just another drifting hulk, left to rot by the sea, but something about this one calls to me. If the rumors are true, there's a high-value target aboard-an officer, a noble, someone of import. The kind of person whose capture could change our fortunes for good.
+	We'll dock at first light and board. With any luck, there'll be something left of the ship's cargo, and perhaps even more-a prisoner. I've instructed the crew to remain sharp. If this wreck was abandoned by the crew, it's either from fear or some darker force. We'll find out soon enough.
+	Tomorrow, we uncover its secrets.
