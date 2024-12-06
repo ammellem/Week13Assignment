@@ -1,7 +1,11 @@
-
+/*
+* defiance the game
+* Version 1.0 
+* @author Austin Deegan
+*/
 public class game{
 	private int playerMaxWeight = 125;//small 10 medeom 25 hevy 50
-	private int health = 20;
+	private int health = 16;
 	private RoomStore[][][] store = new RoomStore[ 4 ][ 3 ][ 7 ];//change
 	private int[] gameStart = { 0, 1, 3 }; //starting locashon
 	//define one for each room. null There is a path in that dorecshon. 
@@ -40,7 +44,7 @@ public class game{
 	//item: name , damage, smash, wg, speshal
 	private Items knife = new Items( "KNIFE", 2, 0, 5 );
 	private Items key = new Items( "KEY", 5, "Celldoor" );
-	private Items ball = new Items( "CANNON_BALL", 100, 5, 120 );
+	private Items ball = new Items( "CANNONBALL", 100, 5, 120 );
 	private Items coins = new Items( "COIN", 0, 0, 40, 
 		"Parrot blocking the stairs looking for gold" );
 	private Items rope = new Items( "ROPE", 0, 0, 30, 
@@ -54,22 +58,25 @@ public class game{
 		"Locked door with a skull" );
 	private Items key4 = new Items( "BOAT_KEY", 0, 0, 5, "Locked porthole" );
 	private Items ladder = new Items( "LADDER", 0, 0, 50, "Boat mask" );
+	private Items log1 = new Items( "PIRATELOG1", 0, 0, 0, "read" );
+	private Items log2 = new Items( "PIRATELOG2", 0, 0, 0, "read" );
 	//monster: name, health, damage, items
 	private Monster guard = new Monster( "GUARD", 2, 1 );
 	private Monster guard2 = new Monster( "GUARD", 10, 3 , 
 		new Items[]{ key2 } );
 	private Monster pirate = new Monster( "PIRATE", 15, 5,
 		new Items[]{ sword } );
-	private Monster captan = new Monster( "CAPTAN", 100, 10,
-		new Items[]{ key4 } );
+	private Monster captan = new Monster( "CAPTAiN", 100, 10,
+		new Items[]{ key4, log2 } );
 	private Monster chest = new Monster( "CHEST", 2, 0, 
-		new Items[]{ dagger } );
+		new Items[]{ dagger, log1 } );
 	
 	public game(){
 		
 		//needs room discription and room dereconse from above
 		// discripshon, items, monsters, out, smash
-	    store[0][1][3] = new RoomStore( "You are startled awake with a" + 
+	   store[0][1][3] = new RoomStore( "Welcome to Escape The Black Revenant" +
+			"\nYou are startled awake with a" + 
 			"violent crash as you're rolled into the moist wooden wall" +
 			" of your cell. You appear to be in a cell, but where you are" +
 			" is a mystery.\nYou notice the guard is asleep next to a room" +
