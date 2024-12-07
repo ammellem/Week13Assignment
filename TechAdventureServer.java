@@ -46,7 +46,7 @@ public class TechAdventureServer implements ConnectionListener {
 	}
 
 	public static void main ( String[] args ) {
-		TechAdventureServerDemo techAdventureServerDemo = new TechAdventureServerDemo ();
+		TechAdventureServer techAdventureServerDemo = new TechAdventureServer ();
 		techAdventureServerDemo.start ( 2112 );
 	}
 
